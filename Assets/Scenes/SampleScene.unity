@@ -231,7 +231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &529804543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +508,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904415187}
   m_Mesh: {fileID: 22788929071467060, guid: 2d10b9b89f2474de9800b152c3d00004, type: 3}
+--- !u!4 &904415191 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1980187690, guid: 85af304ab4013c444b7386337bec0d3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1495632414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136591667
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +665,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 23
   m_InteractionLayers:
-    m_Bits: 23
+    m_Bits: 4294967295
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -688,7 +694,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_SelectActionTrigger: 1
-  m_HideControllerOnSelect: 0
+  m_HideControllerOnSelect: 1
   m_AllowHoveredActivate: 0
   m_PlayAudioClipOnSelectEntered: 0
   m_AudioClipForOnSelectEntered: {fileID: 0}
@@ -818,6 +824,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 202364692, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 1758365265}
+    - target: {fileID: 202364692, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_ModelParent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 202364692, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_ModelPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 316239220, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -857,6 +875,22 @@ PrefabInstance:
     - target: {fileID: 1319746308, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670256627, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_HideControllerOnSelect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670256627, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670256628, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 904415191}
+    - target: {fileID: 1670256628, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
+      propertyPath: m_ModelParent
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1767192434, guid: 85af304ab4013c444b7386337bec0d3c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1093,6 +1127,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758365261}
   m_Mesh: {fileID: 22788929071467060, guid: e48d18018a0ba46c283d9fd9c227e578, type: 3}
+--- !u!4 &1758365265 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 316239220, guid: 85af304ab4013c444b7386337bec0d3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1495632414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1818645242 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 705080845, guid: 85af304ab4013c444b7386337bec0d3c,
