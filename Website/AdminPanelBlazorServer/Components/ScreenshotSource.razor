@@ -1,0 +1,10 @@
+﻿<div id=@ID style="width:500px;height:300px;">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public string ID { get; set; } = Guid.NewGuid().ToString().Replace("-", "");
+}
