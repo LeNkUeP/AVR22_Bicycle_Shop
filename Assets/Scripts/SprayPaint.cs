@@ -54,7 +54,7 @@ public class SprayPaint : MonoBehaviour
 
     public void stopPaint()
     { 
-        audioSource.Pause();
+        audioSource.Stop();
         particles.Pause();
         audioSource.enabled = false;
         particles.gameObject.SetActive(false);
