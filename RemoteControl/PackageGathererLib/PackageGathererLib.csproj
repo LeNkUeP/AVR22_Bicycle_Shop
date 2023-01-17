@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>9</LangVersion>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Command\SignalRCommandAnimationController.cs" Link="Assets\Scripts\RemoteControl\Command\SignalRCommandAnimationController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Command\SignalRCommandAudioController.cs" Link="Assets\Scripts\RemoteControl\Command\SignalRCommandAudioController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Command\SignalRCommandColorController.cs" Link="Assets\Scripts\RemoteControl\Command\SignalRCommandColorController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Command\SignalRCommandEntityController.cs" Link="Assets\Scripts\RemoteControl\Command\SignalRCommandEntityController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Conditionals.cs" Link="Assets\Scripts\RemoteControl\Conditionals.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\EventArgs.cs" Link="Assets\Scripts\RemoteControl\EventArgs.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Features\SignalRAnimationBase.cs" Link="Assets\Scripts\RemoteControl\Features\SignalRAnimationBase.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Features\SignalRAudioBase.cs" Link="Assets\Scripts\RemoteControl\Features\SignalRAudioBase.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Features\SignalRColorBase.cs" Link="Assets\Scripts\RemoteControl\Features\SignalRColorBase.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Features\SignalRUnityFeatureBase.cs" Link="Assets\Scripts\RemoteControl\Features\SignalRUnityFeatureBase.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Helpers.cs" Link="Assets\Scripts\RemoteControl\Helpers.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Logging\UnityLogger.cs" Link="Assets\Scripts\RemoteControl\Logging\UnityLogger.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Logging\UnityLoggerScope.cs" Link="Assets\Scripts\RemoteControl\Logging\UnityLoggerScope.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\Logging\UnityLoggingProvider.cs" Link="Assets\Scripts\RemoteControl\Logging\UnityLoggingProvider.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandAnimationController.cs" Link="Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandAnimationController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandAudioController.cs" Link="Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandAudioController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandColorController.cs" Link="Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandColorController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandEntityController.cs" Link="Assets\Scripts\RemoteControl\RegisteredCommand\SignalRRegisteredCommandEntityController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\SignalRClientController.cs" Link="Assets\Scripts\RemoteControl\SignalRClientController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\SignalRConnectionManager.cs" Link="Assets\Scripts\RemoteControl\SignalRConnectionManager.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\SignalREntity.cs" Link="Assets\Scripts\RemoteControl\SignalREntity.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\SignalREntityController.cs" Link="Assets\Scripts\RemoteControl\SignalREntityController.cs" />
+    <Compile Include="..\..\Assets\Scripts\RemoteControl\TriggerScript.cs" Link="Assets\Scripts\RemoteControl\TriggerScript.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Prefabs\" />
+    <Folder Include="Assets\Scripts\RemoteControl\Command\" />
+    <Folder Include="Assets\Scripts\RemoteControl\Features\" />
+    <Folder Include="Assets\Scripts\RemoteControl\Logging\" />
+    <Folder Include="Assets\Scripts\RemoteControl\RegisteredCommand\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="7.0.1" />
+  </ItemGroup>
+
+</Project>
