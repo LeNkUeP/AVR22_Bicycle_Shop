@@ -1,0 +1,33 @@
+﻿@page "/UnityRemoteControl"
+@using AdminPanelBlazorServer.Components
+@using Microsoft.AspNetCore.SignalR.Client;
+
+<RemoteController></RemoteController>
+<GameCapture></GameCapture>
+<button @onclick=TakeScreenshot>Take Screenshot</button>
+<ScreenshotSource @ref=ScreenshotSrc>
+    lorem ipsum
+    <div style="width:200px;height:100px;background-color:teal;"/>
+</ScreenshotSource>
+<ScreenshotTarget SourceFunc=@(() => ScreenshotSrc) @ref=ScreenshotTrg></ScreenshotTarget>
+
+@code
+{
+    private ScreenshotSource ScreenshotSrc { get; set; }
+    private ScreenshotTarget ScreenshotTrg { get; set; }
+    [Inject]
+    private HubConnector HubConn { get; set; }
+
+    private async void TakeScreenshot()
+    {
+        ScreenshotTrg.TakeScreenshot();        
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (HubConn.Connection.State == HubConnectionState.Disconnected)
+        {
+            await HubConn.Connection.StartAsync();
+        }
+    }
+}

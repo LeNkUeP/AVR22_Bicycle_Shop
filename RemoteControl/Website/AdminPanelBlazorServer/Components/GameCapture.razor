@@ -1,0 +1,23 @@
+﻿@inherits HubConnectedComponent
+
+@if (ImageSourceBase64 is not null)
+{
+    <div>
+        <img src=@($"data:image/PNG;base64,{ImageSourceBase64}")/>
+    </div>
+}
+@code
+{
+    protected string ImageSourceBase64 { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSetAsync();
+        HubConnector.AddHandler<string>("GameplayImage", x =>
+        {
+                ImageSourceBase64 = x;
+                InvokeAsync(StateHasChanged);
+        });
+    }
+}
+
