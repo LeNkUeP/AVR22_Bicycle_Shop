@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0-preview5-19227-01" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview5-19227-01" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.0.0-preview5-19227-01" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.0-preview5.19227.9" />
+    <PackageReference Include="Xabe.FFmpeg" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Publish\" />
+    <Folder Include="posted\" />
+    <Folder Include="wwwroot\posted\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BlazorSignalR">
+      <HintPath>lib\BlazorSignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorSignalR.JS">
+      <HintPath>lib\BlazorSignalR.JS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="del /F /Q $(ProjectDir)posted\*.*" />
+  </Target>
+
+</Project>
