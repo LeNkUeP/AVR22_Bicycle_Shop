@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Xabe.FFmpeg;
+
+namespace VRProjectServer;
+
+/// <summary>
+/// Fügt die Konvertierung hochgeladener Dateien in .ogg hinzu.
+/// </summary>
+public static class OggConverterExtensions
+{
+    public static IApplicationBuilder UseOggConverter(this IApplicationBuilder builder, IHostingEnvironment env, string folder)
+    {
+        OggConverterMiddleware.Folder = folder;
+        OggConverterMiddleware.WorkPath = env.WebRootPath ?? env.ContentRootPath;
+
+        FFmpeg.SetExecutablesPath(Path.Combine(OggConverterMiddleware.WorkPath, "ffmpeg"));
+        Directory.CreateDirectory(FFmpeg.ExecutablesPath);
+        
+        // einmal das frische ffmpeg holen...
+        //FFmpeg.GetLatestVersion();
+
+        return builder.UseMiddleware<OggConverterMiddleware>();
+    }
+}
+
+public class OggConverterMiddleware : MiddlewareBase<OggConverterMiddleware>
+{
+    public OggConverterMiddleware(RequestDelegate next, IHostingEnvironment hostingEnv) => (Next, HostingEnv) = (next, hostingEnv);
+
+    public async Task Invoke(HttpContext context)
+    {
+        if (context.Request.Method == HttpMethods.Post
+            && context.Items.TryGetValue("SavedFiles", out var savedFilesObj)
+            && savedFilesObj is List<string> savedFiles)
+        {
+            /// mp3- und wav-dateien konvertieren bitte.
+            foreach (var savedFile in savedFiles)
+            {
+                if (savedFile.EndsWith(".mp3", StringComparison.InvariantCultureIgnoreCase)
+                || savedFile.EndsWith(".wav", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    await ConvertToOggAsync(Path.Combine(WorkPath, savedFile));
+                    await context.Response.WriteAsync($"{savedFile}.ogg");
+                }
+                /// und wenn wir eine .ogg haben, dann einfach so ausgeben.
+                else if (savedFile.EndsWith(".ogg"))
+                {
+                    await context.Response.WriteAsync(savedFile);
+                }
+            }
+        }
+        else
+        {
+            await Next.Invoke(context);
+        }
+    }
+
+    private async Task ConvertToOggAsync(string savedFile)
+    {
+        var snippet = await FFmpeg.Conversions.FromSnippet.Convert(savedFile, $"{savedFile}.ogg");
+        await snippet.Start();
+    }
+}

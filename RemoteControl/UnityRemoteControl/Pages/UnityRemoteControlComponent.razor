@@ -1,0 +1,100 @@
+@page "/UnityRemoteControl"
+@inherits UnityRemoteControlComponentBase
+
+
+<div>
+    <h3>Audiodatei hochladen</h3>
+    <form class="form-inline" id="uploadPostForm" method="post" enctype="multipart/form-data" target="hiddenFrame" ref="form_uploadPostForm">
+        @functions {ElementRef form_uploadPostForm;}
+        <input type="file" id="formfile" name="ImageFile" required onchange="@FileInputChangedSubmitForm" />
+
+        <!-- damit das POST nicht auf eine neue Seite geht, ist das Target des Formulars dieses unsichtbare div: -->
+        <div id="hiddenDiv" style="display:none; visibility:hidden;">
+            <iframe src="about:blank" height="100" width="300" border="0" scrolling="no" name="hiddenFrame" id="hiddenFrame"></iframe>
+        </div>
+        <input type="button" id="broadcast" value="Stummschalten" onclick=@SetAudioMute />
+        <input type="button" id="broadcast" value="laut schalten" onclick=@SetAudioUnmute />
+        <input type="button" id="broadcast" value="Stop" onclick=@StopAudio />
+    </form>
+    <p id="postResponse" ref="p_postInfo">
+    </p>
+    @functions {ElementRef p_postInfo;}
+
+    @functions
+    {
+        /// <summary>
+        /// Change-Handler für das Dateiauswahl-Input-Element
+        /// </summary>
+        public async void FileInputChangedSubmitForm()
+        {
+            /// Formular absenden
+            await SubmitForm(form_uploadPostForm);
+            string initialcontent = await JsRuntime.InvokeAsync<string>("JsFunctions.GetIFrameInnerHtml");
+
+            /// Prüfen, ob sich der Wert des IFrames geändert hat.
+            string content = initialcontent;
+            DateTime timeout = DateTime.UtcNow.AddSeconds(90);
+            int cnt = 0;
+            while (timeout > DateTime.UtcNow && content == initialcontent)
+            {
+                cnt++;
+                await SetStatus($"converting & transferring... {cnt}00 ms");
+                await Task.Delay(100);
+                content = await JsRuntime.InvokeAsync<string>("JsFunctions.GetIFrameInnerHtml");
+            }
+            if (content != initialcontent)
+            {
+                await SetStatus("sending audio command...");
+                await SetAudio($"{content.Trim().Replace('\\', '/')}");
+                await SetStatus("sent audio command...");
+            }
+        }
+
+        public Task<object> SetStatus(string status)
+            => JsRuntime.InvokeAsync<object>("JsFunctions.SetContent", p_postInfo, status);
+
+        public Task SubmitForm(ElementRef form)
+            => JsRuntime.InvokeAsync<object>("JsFunctions.SubmitForm", form);
+
+    }
+</div>
+
+<h3>Befehl absenden</h3>
+<form class="form-inline">
+    <div class="input-append">
+        <input type="text" id="message-text" placeholder="Befehl eingeben" bind=@CommandText />
+        <input type="button" id="broadcast" class="btn" value="Absenden" onclick=@Command />
+    </div>
+</form>
+
+<h3>Farbe festlegen</h3>
+<form class="form-inline">
+    <div class="input-append">
+        <input type="color" id="message-color" placeholder="Select a color" bind=@Color /> @*onchange=@SetColor*@
+    </div>
+</form>
+
+<h3>Animation festlegen</h3>
+<form class="form-inline">
+    <div class="input-append">
+        <select id="message-animation" placeholder="Select an animation" bind=@Animation>
+            @*onchange=@SetColor*@
+            @foreach (var item in Animations.OrderBy(i => i))
+            {
+                <option value=@item>@item</option>
+            }
+        </select>
+    </div>
+</form>
+
+<div>
+    <h3>Protokoll</h3>
+
+    <ul id="message-list">
+        @foreach (var msg in LogOutput)
+        {
+            <li>@msg</li>
+        }
+    </ul>
+</div>
+
