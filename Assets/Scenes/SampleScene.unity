@@ -1073,6 +1073,7 @@ GameObject:
   - component: {fileID: 1299371822}
   - component: {fileID: 1299371821}
   - component: {fileID: 1299371820}
+  - component: {fileID: 1299371823}
   m_Layer: 3
   m_Name: SignalRConnection
   m_TagString: Untagged
@@ -1126,6 +1127,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1299371823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299371819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab216487d7913914d83c3124f8feeb2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1380646240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 202364687, guid: 85af304ab4013c444b7386337bec0d3c,
