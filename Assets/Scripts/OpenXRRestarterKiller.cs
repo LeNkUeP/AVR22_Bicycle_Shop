@@ -8,6 +8,7 @@ using System;
 // There absolutely has to be a better way, and this code should NOT be maintained incase the issue is resolved
 public class OpenXRRestarterKiller : MonoBehaviour
 {
+#if !UNITY_ANDROID
     private static bool isHookedIntoUpdate = false;
     private static object restarterInstance = null;
 
@@ -15,7 +16,6 @@ public class OpenXRRestarterKiller : MonoBehaviour
     private static FieldInfo singletonInstanceField = null;
     private static FieldInfo restarterCoroutine = null;
     private static MethodInfo stopMethod = null;
-
     [InitializeOnLoadMethod]
     [ExecuteInEditMode]
     private static void Init()
@@ -82,4 +82,5 @@ public class OpenXRRestarterKiller : MonoBehaviour
             SetHooked(false);
         }
     }
+    #endif
 }
