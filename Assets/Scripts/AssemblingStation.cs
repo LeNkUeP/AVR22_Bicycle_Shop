@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class AssemblingStation : MonoBehaviour
 {
@@ -10,7 +11,22 @@ public class AssemblingStation : MonoBehaviour
     bool isPlaying = false;
     bool movingDown = false;
     bool movingUp = false;
+    float audioTime = 1;
+
+    public bool onlyFullBike = true;
     public float speed = 0.5f;
+
+    XRSocketInteractor backwheel;
+    XRSocketInteractor frontwheel;
+    XRSocketInteractor handlebar;
+    XRSocketInteractor frame;
+    XRSocketInteractor cylinder;
+    XRSocketInteractor treadleleft;
+    XRSocketInteractor treadleRight;
+    XRSocketInteractor treadleCircleLeft;
+    XRSocketInteractor treadleCircleRight;
+
+    public XRSocketInteractor[] sockets;
 
     private void Start()
     {
@@ -18,12 +34,28 @@ public class AssemblingStation : MonoBehaviour
         startPosition = station.transform.position;
     }
 
+    bool isBikeCompleted()
+    {
+        if (onlyFullBike)
+        {
+            foreach (XRSocketInteractor socket in sockets)
+            {
+                if (!socket.hasSelection)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void startAnimation()
     {
-        if (!isPlaying)
+        if (!isPlaying && isBikeCompleted())
         {
             isPlaying = true;
             movingDown = true;
+            sound.time = audioTime;
             sound.Play();
         }
     }
