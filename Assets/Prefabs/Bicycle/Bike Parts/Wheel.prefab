@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8686864750782109480}
   - component: {fileID: 8686864750782109476}
   - component: {fileID: 8686864750782109483}
-  - component: {fileID: 8686864750782109482}
+  - component: {fileID: 4429326041710630461}
   m_Layer: 9
   m_Name: Wheel
   m_TagString: Untagged
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!65 &8686864750782109482
-BoxCollider:
+--- !u!64 &4429326041710630461
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -227,6 +227,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3716886, y: 2.371689, z: 0.37254536}
-  m_Center: {x: -0.000001937175, y: -3.6392413e-11, z: 0.004794178}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300010, guid: 767ba1d9ec0c49543818dd53c9457228, type: 3}

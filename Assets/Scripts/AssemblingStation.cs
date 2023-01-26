@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class AssemblingStation : MonoBehaviour
 {
-    public GameObject station;
     Vector3 startPosition;
     AudioSource sound;
     bool isPlaying = false;
@@ -15,26 +15,18 @@ public class AssemblingStation : MonoBehaviour
 
     public bool onlyFullBike = true;
     public float speed = 0.5f;
-
-    XRSocketInteractor backwheel;
-    XRSocketInteractor frontwheel;
-    XRSocketInteractor handlebar;
-    XRSocketInteractor frame;
-    XRSocketInteractor cylinder;
-    XRSocketInteractor treadleleft;
-    XRSocketInteractor treadleRight;
-    XRSocketInteractor treadleCircleLeft;
-    XRSocketInteractor treadleCircleRight;
+    public float transferDelay = 10f;
+    public string[] bikeStations;
 
     public XRSocketInteractor[] sockets;
 
     private void Start()
     {
         sound = GetComponent<AudioSource>();
-        startPosition = station.transform.position;
+        startPosition = transform.localPosition;
     }
 
-    bool isBikeCompleted()
+    public bool IsBikeCompleted()
     {
         if (onlyFullBike)
         {
@@ -49,9 +41,75 @@ public class AssemblingStation : MonoBehaviour
         return true;
     }
 
+    public string GetAvailableStationInShop()
+    {
+        foreach (string name in bikeStations)
+        {
+            GameObject station = GameObject.Find(name);
+            if (station != null && station.GetComponentInChildren<BikeStation>().IsEmpty())
+            {
+                return name;
+            }
+        }
+        return null;
+    }
+
+    public GameObject GetBike()
+    {
+        GameObject fullBike = new GameObject();
+        fullBike.name = "Bike";
+
+        foreach (XRSocketInteractor socket in sockets)
+        {
+            IXRSelectInteractable currentItem = socket.GetOldestInteractableSelected();
+            if (currentItem != null)
+            {
+                Destroy(currentItem.transform.GetComponent<XRGrabInteractable>());
+                Destroy(currentItem.transform.GetComponent<MeshCollider>());
+                Destroy(currentItem.transform.GetComponent<Rigidbody>());
+                currentItem.transform.parent = fullBike.transform;
+                CleanChildren(currentItem.transform.gameObject);
+            }
+        }
+
+        return fullBike;
+    }
+
+    public void CleanChildren(GameObject obj)
+    {
+        int nbChildren = obj.transform.childCount;
+
+        for (int i = nbChildren - 1; i >= 0; i--)
+        {
+            Destroy(obj.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public bool SendBikeToShop()
+    {
+        string availableStation = GetAvailableStationInShop();
+        if (availableStation != null)
+        {
+            GameObject station = GameObject.Find(availableStation);
+            GameObject bike = GetBike();
+            bike.transform.position = station.transform.position;
+            bike.transform.rotation = station.transform.rotation;
+            StartCoroutine(StartTransferAnimation(transferDelay, bike, station));
+
+            return true;
+        }
+        return false;
+    }
+
+    public IEnumerator StartTransferAnimation(float t, GameObject bike, GameObject station)
+    {
+        yield return new WaitForSeconds(t);
+        station.GetComponentInChildren<BikeStation>().StartAnimation(bike);
+    }
+
     public void startAnimation()
     {
-        if (!isPlaying && isBikeCompleted())
+        if (!isPlaying && IsBikeCompleted() && GetAvailableStationInShop() != null)
         {
             isPlaying = true;
             movingDown = true;
@@ -66,7 +124,7 @@ public class AssemblingStation : MonoBehaviour
         {
             if (movingDown)
             {
-                if (transform.position.y > 2)
+                if (transform.localPosition.y > 2)
                 {
                     transform.Translate(Vector3.down * speed * Time.deltaTime);
                 }
@@ -74,12 +132,13 @@ public class AssemblingStation : MonoBehaviour
                 {
                     movingDown = false;
                     movingUp = true;
+                    SendBikeToShop();
                 }
             }
 
             if (movingUp)
             {
-                if (transform.position.y < startPosition.y)
+                if (transform.localPosition.y < startPosition.y)
                 {
                     transform.Translate(Vector3.up * speed * Time.deltaTime);
                 }
