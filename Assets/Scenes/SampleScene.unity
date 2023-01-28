@@ -1870,6 +1870,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5599618330621629832, guid: 15b42f4536d3aa146bc0038779c57440,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599618330621629832, guid: 15b42f4536d3aa146bc0038779c57440,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599618330621629832, guid: 15b42f4536d3aa146bc0038779c57440,
+        type: 3}
       propertyPath: m_BlendShapeWeights.Array.size
       value: 11
       objectReference: {fileID: 0}
