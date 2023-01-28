@@ -6,39 +6,63 @@ public class SecurityTv : MonoBehaviour
 {
     public GameObject screen;
     public Material[] liveFeeds;
+    public Material screenOff;
     int currentVideo = 0;
+    bool isOn = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Toggle()
     {
-        screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
-    }
-    
-    public void LeftVideo()
-    {
-        if (currentVideo == 0)
+        if (!isOn)
         {
-            currentVideo = liveFeeds.Length - 1;
+            GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = true;
             screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            isOn = true;
         }
         else
         {
-            currentVideo -= 1;
-            screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = false;
+            screen.GetComponent<MeshRenderer>().material = screenOff;
+            isOn = false;
+        }
+    }
+
+    public void LeftVideo()
+    {
+        if (isOn)
+        {
+            GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = false;
+            if (currentVideo == 0)
+            {
+                currentVideo = liveFeeds.Length - 1;
+                GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = true;
+                screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            }
+            else
+            {
+                currentVideo -= 1;
+                GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = true;
+                screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            }
         }
     }
 
     public void RightVideo()
     {
-        if (currentVideo == liveFeeds.Length-1)
+        if (isOn)
         {
-            currentVideo = 0;
-            screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
-        }
-        else
-        {
-            currentVideo += 1;
-            screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = false;
+            if (currentVideo == liveFeeds.Length - 1)
+            {
+                currentVideo = 0;
+                GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = true;
+                screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            }
+            else
+            {
+                currentVideo += 1;
+                GameObject.Find(liveFeeds[currentVideo].name).GetComponentInChildren<Camera>().enabled = true;
+                screen.GetComponent<MeshRenderer>().material = liveFeeds[currentVideo];
+            }
         }
     }
 }

@@ -25,7 +25,6 @@ public class SecurityCam : MonoBehaviour
         if (renderTexture != null)
         {
             cam.targetTexture = renderTexture;
-            cam.enabled = true;
         }
         pivot.transform.localRotation = Quaternion.AngleAxis(pitch, Vector3.right);
         SetUpStartRotation();
