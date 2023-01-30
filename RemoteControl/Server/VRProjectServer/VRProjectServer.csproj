@@ -15,13 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="posted\" />
-    <Folder Include="posted\" />
-    <Folder Include="posted\" />
-    <Folder Include="Publish\win-x64\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\SharedLib\SharedLib.csproj" />
   </ItemGroup>
 
