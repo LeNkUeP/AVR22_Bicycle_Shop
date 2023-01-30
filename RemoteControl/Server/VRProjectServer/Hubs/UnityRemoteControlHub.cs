@@ -58,7 +58,7 @@ public class UnityRemoteControlHub : Hub
     /// </summary>
     /// <param name="animations"></param>
     /// <returns></returns>
-    public async Task GameplayImage(string imgBase64) => await Clients.Others.SendAsync(nameof(GameplayImage), imgBase64);
+    public async Task GameplayImage(string imageTag, string imgBase64) => await Clients.Others.SendAsync(nameof(GameplayImage), imageTag, imgBase64);
 
     public async Task CompanionAppScreenshot(string imgBase64) => await Clients.Others.SendAsync(nameof(CompanionAppScreenshot), imgBase64);
 }

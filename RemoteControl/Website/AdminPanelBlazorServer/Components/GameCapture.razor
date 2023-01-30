@@ -8,15 +8,18 @@
 }
 @code
 {
+    [Parameter]
+    public string ImageTag{ get; set; }
+
     protected string ImageSourceBase64 { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
         base.OnParametersSetAsync();
-        HubConnector.AddHandler<string>("GameplayImage", x =>
+        HubConnector.AddTaggedHandler<string>("GameplayImage", ImageTag, x =>
         {
-                ImageSourceBase64 = x;
-                InvokeAsync(StateHasChanged);
+            ImageSourceBase64 = x;
+            InvokeAsync(StateHasChanged);
         });
     }
 }

@@ -27,7 +27,7 @@ public class HubConnector
         Connection = new HubConnectionBuilder()
             //.WithUrl(Navigation.ToAbsoluteUri("/unityremotecontrolhub"))
 
-            .WithUrl("http://localhost:5000/unityremotecontrolhub")
+            .WithUrl("http://localhost:5000/UnityRemoteControlHub")
             //, opt =>
             //{
             //    Logger.LogInformation($"Setting options");
@@ -58,6 +58,15 @@ public class HubConnector
     public void AddHandler<T>(string name, Action<T> handlerAction) => Connection.On<T>(name, x =>
     {
         handlerAction(x);
+        return Task.CompletedTask;
+    });
+
+    public void AddTaggedHandler<T>(string name, string tag, Action<T> handlerAction) => Connection.On<string, T>(name, (payloadTag, payload) =>
+    {
+        if (payloadTag == tag)
+        {
+            handlerAction(payload);
+        }
         return Task.CompletedTask;
     });
 

@@ -3,11 +3,61 @@
 @using Microsoft.AspNetCore.SignalR.Client;
 
 <RemoteController></RemoteController>
-<GameCapture></GameCapture>
+<div>
+
+    <table>
+        <tr>
+            <td>
+                Misc.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <GameCapture ImageTag="GameCapture"></GameCapture>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <GameCapture ImageTag="ShopCamera"></GameCapture>
+            </td>
+            <td>
+                <GameCapture ImageTag="OutsideCamera"></GameCapture>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Workshop
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <GameCapture ImageTag="WorkshopCamera1"></GameCapture>
+            </td>
+            <td>
+                <GameCapture ImageTag="WorkshopCamera2"></GameCapture>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Storage
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <GameCapture ImageTag="StorageCamera1"></GameCapture>
+            </td>
+            <td>
+                <GameCapture ImageTag="StorageCamera2"></GameCapture>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="clear:both;"></div>
 <button @onclick=TakeScreenshot>Take Screenshot</button>
 <ScreenshotSource @ref=ScreenshotSrc>
     lorem ipsum
-    <div style="width:200px;height:100px;background-color:teal;"/>
+    <div style="width:200px;height:100px;background-color:teal;" />
 </ScreenshotSource>
 <ScreenshotTarget SourceFunc=@(() => ScreenshotSrc) @ref=ScreenshotTrg></ScreenshotTarget>
 
@@ -20,7 +70,7 @@
 
     private async void TakeScreenshot()
     {
-        ScreenshotTrg.TakeScreenshot();        
+        ScreenshotTrg.TakeScreenshot();
     }
 
     protected override async Task OnInitializedAsync()

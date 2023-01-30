@@ -14,6 +14,7 @@ namespace Assets.Scripts.Features
             where TEntityController : SignalREntityController<TArgs>
     {
         public Camera theCamera;
+        public string imageTag;
         private RenderTexture cameraTexture;
         private Texture2D texture2D;
 
@@ -38,9 +39,16 @@ namespace Assets.Scripts.Features
             HubConnection = hubConnection;
         }
 
+        private bool measureTime = false;
+
         public void Update()
         {
-            if ((sendImage && (first || Time.renderedFrameCount % 30 == 0) && HubConnection is not null))
+            if (measureTime)
+            {
+                measureTime = false;
+                Debug.Log($"rendering {imageTag} took {Time.deltaTime}s."); // etwa 0.1s für den rendervorgang...
+            }
+            if ((sendImage && (first || Time.renderedFrameCount % 60 == 0) && HubConnection is not null))
             {
                 if (theCamera is { })
                 {
@@ -56,9 +64,10 @@ namespace Assets.Scripts.Features
 
                     var pngBytes = texture2D.EncodeToPNG();
                     var base64 = Convert.ToBase64String(pngBytes);
-                    HubConnection.SendAsync("GameplayImage", base64);
+                    HubConnection.SendAsync("GameplayImage", imageTag, base64);
                 }
                 first = false;
+                measureTime = true;
             }
         }
     }
