@@ -686,6 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityController: {fileID: 6926251590195830129}
   theCamera: {fileID: 6926251589085053677}
+  imageTag: 
   resolutionX: 400
   resolutionY: 300
   sendImage: 0

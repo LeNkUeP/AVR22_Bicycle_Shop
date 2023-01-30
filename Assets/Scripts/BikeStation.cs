@@ -74,6 +74,16 @@ public class BikeStation : MonoBehaviour
                     movingUp = false;
                     isPlaying = false;
                     sound.Stop();
+                    bike.AddComponent<Rigidbody>().isKinematic = false;
+                    bike.GetComponent<Rigidbody>().useGravity = true;
+                    bike.AddComponent<BoxCollider>().size = new Vector3(1.5f,1,0.5f);
+                    bike.GetComponent<BoxCollider>().center = new Vector3(-3f, -0.4f, 5f);
+                    GameObject attach = new GameObject("AttachTransform");
+                    attach.transform.parent = bike.transform;
+                    attach.transform.localPosition = new Vector3(-3f, -0.35f, 5f);
+                    attach.transform.localRotation = Quaternion.Euler(0,0,0);
+                    bike.AddComponent<XRGrabInteractable>().attachTransform = attach.transform;
+                    bike.layer = LayerMask.NameToLayer("Interactable");
                 }
             }
         }

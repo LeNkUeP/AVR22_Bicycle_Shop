@@ -398,7 +398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 58387797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3638,6 +3638,7 @@ GameObject:
   - component: {fileID: 698031395}
   - component: {fileID: 698031396}
   - component: {fileID: 698031397}
+  - component: {fileID: 698031398}
   m_Layer: 0
   m_Name: Lift
   m_TagString: Untagged
@@ -3659,6 +3660,7 @@ Transform:
   m_Children:
   - {fileID: 3139154463935816390}
   - {fileID: 1737977833}
+  - {fileID: 1655707375}
   m_Father: {fileID: 549591221}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3674,7 +3676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9c5dd2bd4fdf048918504105c66ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyFullBike: 1
+  onlyFullBike: 0
   speed: 0.5
   transferDelay: 5
   bikeStations:
@@ -3787,6 +3789,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &698031398
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698031394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4229798, y: 0.97373486, z: 0.5564327}
+  m_Center: {x: 0.08293724, y: -2.3879006, z: -0.07392788}
 --- !u!1001 &737957664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8944,6 +8959,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1655707374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655707375}
+  m_Layer: 0
+  m_Name: attachTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1655707375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655707374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.064, y: -2.324, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 698031395}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658817660
 GameObject:
   m_ObjectHideFlags: 0
@@ -12223,7 +12269,7 @@ GameObject:
   - component: {fileID: 1393932108}
   - component: {fileID: 1393932106}
   - component: {fileID: 1393932107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Prop_Drill_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
