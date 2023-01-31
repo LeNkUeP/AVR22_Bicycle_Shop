@@ -83,7 +83,8 @@ public class BikeStation : MonoBehaviour
                     attach.transform.localPosition = new Vector3(-3f, -0.35f, 5f);
                     attach.transform.localRotation = Quaternion.Euler(0,0,0);
                     bike.AddComponent<XRGrabInteractable>().attachTransform = attach.transform;
-                    bike.layer = LayerMask.NameToLayer("Interactable");
+                    bike.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("FullBike");
+                    bike.layer = LayerMask.NameToLayer("FullBike");
                 }
             }
         }

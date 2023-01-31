@@ -123,7 +123,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: e02774ff9a945bf448476983d4538026, type: 2}
 --- !u!1001 &19039414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1473,6 +1473,10 @@ PrefabInstance:
     - target: {fileID: 1210647442776658, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_09 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1210647442776658, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4107919908272760, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
       propertyPath: m_RootOrder
@@ -3256,6 +3260,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_09 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1210647442776658, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4107919908272760, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -3592,6 +3600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Driveway_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1644800881403110, guid: cf7233a30aeb19a4ba3651949ab4bc78, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4927186354329150, guid: cf7233a30aeb19a4ba3651949ab4bc78, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -3726,6 +3738,10 @@ PrefabInstance:
     - target: {fileID: 1210647442776658, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_09 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1210647442776658, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4107919908272760, guid: 82ce6f73bd87bfd499f4e1fab98b87c1, type: 3}
       propertyPath: m_RootOrder

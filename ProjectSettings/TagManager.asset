@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - Hands
   - Bike Parts
   - Character
-  - 
-  - 
-  - 
+  - NPC
+  - FullBike
+  - NPCDestination
   - 
   - 
   - 
