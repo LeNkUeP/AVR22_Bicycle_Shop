@@ -85,8 +85,17 @@ public class BikeStation : MonoBehaviour
                     bike.AddComponent<XRGrabInteractable>().attachTransform = attach.transform;
                     bike.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("FullBike");
                     bike.layer = LayerMask.NameToLayer("FullBike");
+                    bike.GetComponent<XRGrabInteractable>().selectExited.AddListener(delegate { DetachBike(); });
                 }
             }
         }
+    }
+
+    void DetachBike()
+    {
+        // grabinteractable tries to reparent, so disable and enable to prevent
+        bike.GetComponent<XRGrabInteractable>().enabled = false;
+        bike.transform.parent = null;
+        bike.GetComponent<XRGrabInteractable>().enabled = true;
     }
 }
