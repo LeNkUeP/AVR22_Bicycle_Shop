@@ -17,6 +17,11 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
+        initDestination();
+    }
+
+    public void initDestination()
+    {
         currentDestination = destination;
     }
 

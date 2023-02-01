@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_10
       objectReference: {fileID: 0}
+    - target: {fileID: 1750651975592246, guid: 12d62554109128a45a8e053a9a991970, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4571935652509184, guid: 12d62554109128a45a8e053a9a991970, type: 3}
       propertyPath: m_RootOrder
       value: 22

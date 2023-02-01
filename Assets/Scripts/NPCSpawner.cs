@@ -20,8 +20,9 @@ public class NPCSpawner : MonoBehaviour
         SpawnNPC();
     }
 
-    void SpawnNPC()
+    public void SpawnNPC()
     {
+        npc.initDestination();
         int r = Random.Range(1, 5);
 
         // Zombie
