@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour
     public GameObject destination;
     public GameObject beginning;
     public NavMeshAgent agent;
+    public GameObject moneyBag;
 
     private GameObject currentDestination;
     public string idleAnim;
@@ -36,5 +37,7 @@ public class NPC : MonoBehaviour
         Destroy(bike.transform.gameObject);
         currentDestination = beginning;
         GetComponentInChildren<Animator>().Play(walkingAnim);
+
+        Instantiate(moneyBag, transform.position, moneyBag.transform.localRotation);
     }
 }

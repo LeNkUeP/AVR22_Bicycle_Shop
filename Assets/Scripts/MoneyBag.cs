@@ -14,7 +14,9 @@ public class MoneyBag : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(transform.gameObject);
-        other.GetComponentInChildren<Animator>().Play(other.GetComponent<NPC>().idleAnim);
+        GetComponent<AudioSource>().Play();
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        Destroy(transform.gameObject, 1f);
     }
 }
