@@ -5364,7 +5364,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   rayPoint: {fileID: 3309111464173767132}
-  color: {fileID: 2100000, guid: c7c8764223e35c04a95193669ac279e6, type: 2}
+  color: {fileID: 824475598323525633}
   audioSource: {fileID: 3821694029189028695}
   particles: {fileID: 3309111463667635669}
 --- !u!82 &3821694029189028695

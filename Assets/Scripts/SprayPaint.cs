@@ -7,7 +7,7 @@ public class SprayPaint : MonoBehaviour
 
     [SerializeField] LayerMask layermask;
     public Transform rayPoint;
-    public Material color;
+    public GameObject color;
     public AudioSource audioSource;
     public ParticleSystem particles;
 
@@ -50,7 +50,7 @@ public class SprayPaint : MonoBehaviour
                 }
                 else
                 {
-                    target.GetComponent<Renderer>().material = color;
+                    target.GetComponent<Renderer>().material = color.GetComponent<MeshRenderer>().material;
                 }
                 //Debug.DrawRay(rayPoint.position, transform.TransformDirection(new Vector3(-1, 0, 0)) * 20f, Color.red);
             }
@@ -67,12 +67,13 @@ public class SprayPaint : MonoBehaviour
         MeshRenderer parentRenderer = target.transform.parent.GetComponent<MeshRenderer>();
 
         var mats = parentRenderer.materials;
-        mats[index] = color;
+        mats[index] = color.GetComponent<MeshRenderer>().material;
         parentRenderer.materials = mats;
     }
 
     public void Paint()
     {
+        particles.GetComponent<Renderer>().material = color.GetComponent<MeshRenderer>().material;
         audioSource.enabled = true;
         particles.gameObject.SetActive(true);
         audioSource.time = 0.1f;

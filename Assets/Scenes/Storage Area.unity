@@ -1172,28 +1172,6 @@ Transform:
   m_Father: {fileID: 2098838009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &214216195 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1191447915617566, guid: c48c8533e2e091142bc0b9d2b51a5237,
-    type: 3}
-  m_PrefabInstance: {fileID: 116562753}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &214216198
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214216195}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &226154121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1877,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -5707,7 +5685,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -8558,7 +8536,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -11737,7 +11715,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -13662,6 +13640,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5037522291006678002, guid: 222c766e95c3b8349980246676d94f53,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5037522291006678003, guid: 222c766e95c3b8349980246676d94f53, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 222c766e95c3b8349980246676d94f53, type: 3}
@@ -13897,6 +13880,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e285c65980c0074418e734216d6be1ca, type: 2}
+    - target: {fileID: 7737842139303974934, guid: a8fb9da565eea0540aec667361e65950,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7737842139303975020, guid: a8fb9da565eea0540aec667361e65950,
         type: 3}
       propertyPath: m_Name

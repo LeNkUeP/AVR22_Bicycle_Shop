@@ -46,15 +46,16 @@ namespace Assets.Scripts.Features
             if (measureTime)
             {
                 measureTime = false;
-                Debug.Log($"rendering {imageTag} took {Time.deltaTime}s."); // etwa 0.1s für den rendervorgang...
+                //Debug.Log($"rendering {imageTag} took {Time.deltaTime}s."); // etwa 0.1s für den rendervorgang...
             }
             if ((sendImage && (first || Time.renderedFrameCount % 60 == 0) && HubConnection is not null))
             {
                 if (theCamera is { })
                 {
+                    var pt = theCamera.targetTexture;
                     theCamera.targetTexture = cameraTexture;
                     theCamera.Render();
-                    theCamera.targetTexture = null;
+                    theCamera.targetTexture = pt;
                     
                     var oldActive = RenderTexture.active;
                     RenderTexture.active = cameraTexture;

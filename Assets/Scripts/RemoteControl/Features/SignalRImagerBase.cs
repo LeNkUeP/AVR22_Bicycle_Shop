@@ -7,6 +7,8 @@ public abstract class SignalRImagerBase<TEntityController, TArgs> : SignalRUnity
 {
     public RawImage image;
     private Texture2D imageTexture;
+    public int textureWidth = 400;
+    public int textureHeight = 400;
 
     public override void AwakeVirtual()
     {
@@ -20,6 +22,7 @@ public abstract class SignalRImagerBase<TEntityController, TArgs> : SignalRUnity
         {
             imageTexture.LoadImage(bytes);
             //Sprite sp = Sprite.Create(imageTexture, new(0, 0, 300, 300), new());
+            //image.material.mainTexture = imageTexture;
             image.texture = imageTexture;
         });
         return true;
