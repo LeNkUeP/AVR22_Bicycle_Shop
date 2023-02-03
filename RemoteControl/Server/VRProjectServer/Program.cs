@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using VRProjectServer;
 using VRProjectServer.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
@@ -24,6 +25,7 @@ builder.Services.AddResponseCompression(opts =>
     opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
         new[] { "application/octet-stream" });
 });
+
 
 //builder.Services.AddAuthorization(options => options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, policy =>
 //{
@@ -73,8 +75,9 @@ app.UseRouting();
 
 app.MapHub<UnityRemoteControlHub>($"/{nameof(UnityRemoteControlHub).ToLower()}");
 
+//var env = app.Services.GetRequiredService<IWebHostEnvironment>();
 
-
+//app.UseFileUpload(env, "posted");
 
 app.MapFallback(() =>
 {

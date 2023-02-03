@@ -109,14 +109,24 @@ public abstract class SignalRAudioBase<TEntityController, TArgs> : SignalRUnityF
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.OGGVORBIS);
         yield return www.SendWebRequest();
 
+        while(www.result == UnityWebRequest.Result.InProgress)
+        {
+            //Debug.Log("returning null");
+
+            yield return null;
+        }
         if (www.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(www.error);
         }
-        else
+        else if (www.result == UnityWebRequest.Result.Success)
         {
             AudioClip myClip = DownloadHandlerAudioClip.GetContent(www);
             yield return myClip;
+        }
+        else
+        {
+            Debug.Log($"weird case result: {www.result} error: {www.error}");
         }
     }
 

@@ -113,6 +113,5 @@ public class UnityRemoteControlComponent : HubConnectedComponent
     /// <returns></returns>
     internal async Task SetAnimation(string animation) => await Connection.InvokeAsync("Animation", animation);
 
-
     #endregion
 }

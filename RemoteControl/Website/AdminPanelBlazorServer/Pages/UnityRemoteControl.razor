@@ -2,65 +2,56 @@
 @using AdminPanelBlazorServer.Components
 @using Microsoft.AspNetCore.SignalR.Client;
 
-<RemoteController></RemoteController>
-<div>
+<div style="background-color:rosybrown;padding:20px;font-family:Edo;font-size:xx-large;color:darkred">
+    <RemoteController></RemoteController>
+    <div>
+        <h3>Sicherheitszentrale</h3>
 
-    <table>
-        <tr>
-            <td>
-                Misc.
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <GameCapture ImageTag="GameCapture"></GameCapture>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <GameCapture ImageTag="ShopCamera"></GameCapture>
-            </td>
-            <td>
-                <GameCapture ImageTag="OutsideCamera"></GameCapture>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Workshop
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <GameCapture ImageTag="WorkshopCamera1"></GameCapture>
-            </td>
-            <td>
-                <GameCapture ImageTag="WorkshopCamera2"></GameCapture>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Storage
-            </td>
-        </tr>
+        <table>
+            <tr>
+                <td>
+                    <GameCapture ImageTag="GameCapture" Title="Player"></GameCapture>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <GameCapture ImageTag="ShopCamera"></GameCapture>
+                </td>
+                <td>
+                    <GameCapture ImageTag="OutsideCamera"></GameCapture>
+                </td>
+                <td>
+                    <GameCapture ImageTag="WorkshopCamera1"></GameCapture>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <GameCapture ImageTag="WorkshopCamera2"></GameCapture>
+                </td>
+                <td>
+                    <GameCapture ImageTag="StorageCamera1"></GameCapture>
+                </td>
+                <td>
+                    <GameCapture ImageTag="StorageCamera2"></GameCapture>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-        <tr>
-            <td>
-                <GameCapture ImageTag="StorageCamera1"></GameCapture>
-            </td>
-            <td>
-                <GameCapture ImageTag="StorageCamera2"></GameCapture>
-            </td>
-        </tr>
-    </table>
+    @*<button @onclick=TakeScreenshot>Take Screenshot</button>*@
+    <ScreenshotSource @ref=ScreenshotSrc>
+        <strong>Fahradbestellsystem</strong>
+        <div style="width:280px;height:280px;background-color:teal;padding:10px;">
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <img src="img/bikeSilhouette.png"/>
+        </div>
+    </ScreenshotSource>
+    <ScreenshotTarget SourceFunc=@(() => ScreenshotSrc) @ref=ScreenshotTrg></ScreenshotTarget>
+
 </div>
-<div style="clear:both;"></div>
-<button @onclick=TakeScreenshot>Take Screenshot</button>
-<ScreenshotSource @ref=ScreenshotSrc>
-    lorem ipsum
-    <div style="width:200px;height:100px;background-color:teal;" />
-</ScreenshotSource>
-<ScreenshotTarget SourceFunc=@(() => ScreenshotSrc) @ref=ScreenshotTrg></ScreenshotTarget>
-
 @code
 {
     private ScreenshotSource ScreenshotSrc { get; set; }
@@ -68,10 +59,7 @@
     [Inject]
     private HubConnector HubConn { get; set; }
 
-    private async void TakeScreenshot()
-    {
-        ScreenshotTrg.TakeScreenshot();
-    }
+    private async void TakeScreenshot() => ScreenshotTrg.TakeScreenshot();
 
     protected override async Task OnInitializedAsync()
     {

@@ -19,7 +19,7 @@ public static class FileUploadExtensions
     /// <param name="folder">gibt an, wo die Dateien hinkommen, die hochgeladen werden.</param>
     /// <param name="successPassthrough">gibt an, ob bei erfolgreichem durchlaufen des pipelineschrittes dennoch der folgende ausgeführt werden soll.</param>
     /// <returns></returns>
-    public static IApplicationBuilder UseFileUpload(this IApplicationBuilder builder, IHostingEnvironment env, string folder, bool successPassthrough = false)
+    public static IApplicationBuilder UseFileUpload(this IApplicationBuilder builder, IWebHostEnvironment env, string folder, bool successPassthrough = false)
     {
         Directory.CreateDirectory(Path.Combine(env.WebRootPath ?? env.ContentRootPath, FileUploadMiddleware.Folder));
         FileUploadMiddleware.SuccessPassthrough = successPassthrough;
