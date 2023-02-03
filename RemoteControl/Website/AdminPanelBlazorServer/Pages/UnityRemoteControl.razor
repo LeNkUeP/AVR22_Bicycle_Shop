@@ -2,7 +2,7 @@
 @using AdminPanelBlazorServer.Components
 @using Microsoft.AspNetCore.SignalR.Client;
 
-<div style="background-color:rosybrown;padding:20px;">
+<div style="background-color:rosybrown;padding:20px;font-family:Edo;font-size:xx-large;color:darkred">
     <RemoteController></RemoteController>
     <div>
         <h3>Sicherheitszentrale</h3>
@@ -41,11 +41,12 @@
     @*<button @onclick=TakeScreenshot>Take Screenshot</button>*@
     <ScreenshotSource @ref=ScreenshotSrc>
         <strong>Fahradbestellsystem</strong>
-        <div style="width:280px;height:280px;background-color:teal;">
-            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot />
-            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot />
-            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot />
-            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot />
+        <div style="width:280px;height:280px;background-color:teal;padding:10px;">
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <input type="text" @oninput=TakeScreenshot @onchange=TakeScreenshot style="width:95%;font-size:x-large;" />
+            <img src="img/bikeSilhouette.png"/>
         </div>
     </ScreenshotSource>
     <ScreenshotTarget SourceFunc=@(() => ScreenshotSrc) @ref=ScreenshotTrg></ScreenshotTarget>

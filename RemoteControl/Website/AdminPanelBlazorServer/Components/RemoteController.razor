@@ -2,51 +2,59 @@
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.SignalR.Client;
 
-<div>
+<div style="display:inline-block;border:solid;border-block-color:darkred;margin:5px;border-radius:15px;padding:10px;">
     <h3>Audiodatei hochladen</h3>
 
-    <InputFile OnChange="@LoadFiles" multiple />
+    <InputFile OnChange="@LoadFiles" />
 
     <div>
-    <!-- damit das POST nicht auf eine neue Seite geht, ist das Target des Formulars dieses unsichtbare div: -->
-    <input type="button" id="broadcast" value="Stummschalten" @onclick=SetAudioMute />
-    <input type="button" id="broadcast" value="laut schalten" @onclick=SetAudioUnmute />
-    <input type="button" id="broadcast" value="Stop" @onclick=StopAudio />
+        <!-- damit das POST nicht auf eine neue Seite geht, ist das Target des Formulars dieses unsichtbare div: -->
+        <input type="button" id="broadcast" value="Stummschalten" @onclick=SetAudioMute />
+        <input type="button" id="broadcast" value="laut schalten" @onclick=SetAudioUnmute />
+        <input type="button" id="broadcast" value="Stop" @onclick=StopAudio />
     </div>
     <div>
         <p id="Status" ref="p_postInfo" />
     </div>
 </div>
 
-<h3>Befehl absenden</h3>
-<form class="form-inline">
-    <div class="input-append">
-        <input type="text" id="message-text" placeholder="Befehl eingeben" @bind-value=CommandText />
-        <input type="button" id="broadcast" class="btn" value="Absenden" @onclick=Command />
-    </div>
-</form>
+<div style="display:inline-block;border:solid;border-block-color:darkred;margin:5px;border-radius:15px;padding:10px;">
+    <h3>Befehl absenden</h3>
+    <form class="form-inline">
+        <div class="input-append">
+            <input type="text" id="message-text" placeholder="Befehl eingeben" @bind-value=CommandText />
+            <input type="button" id="broadcast" class="btn" value="Absenden" @onclick=Command />
+        </div>
+    </form>
+</div>
 
-<h3>Farbe festlegen</h3>
-<form class="form-inline">
-    <div class="input-append">
-        <input type="color" id="message-color" placeholder="Select a color" @bind-value=Color /> @*onchange=@SetColor*@
-    </div>
-</form>
 
-<h3>Animation festlegen</h3>
-<form class="form-inline">
-    <div class="input-append">
-        <InputSelect id="message-animation" placeholder="Select an animation" @bind-Value=Animation>
-            @*onchange=@SetColor*@
-            @foreach (var item in Animations.OrderBy(i => i))
-            {
-                <option value=@item>@item</option>
-            }
-        </InputSelect>
-    </div>
-</form>
+<div style="display:inline-block;border:solid;border-block-color:darkred;margin:5px;border-radius:15px;padding:10px;">
+    <h3>Farbe festlegen</h3>
+    <form class="form-inline">
+        <div class="input-append">
+            <input type="color" id="message-color" placeholder="Select a color" @bind-value=Color /> @*onchange=@SetColor*@
+        </div>
+    </form>
+</div>
 
-<div>
+<div style="display:inline-block;border:solid;border-block-color:darkred;margin:5px;border-radius:15px;padding:10px;">
+    <h3>Animation festlegen</h3>
+    <form class="form-inline">
+        <div class="input-append">
+            <InputSelect id="message-animation" placeholder="Select an animation" @bind-Value=Animation>
+                @*onchange=@SetColor*@
+                @foreach (var item in Animations.OrderBy(i => i))
+                {
+                    <option value=@item>@item</option>
+                }
+            </InputSelect>
+        </div>
+    </form>
+</div>
+
+
+<div style="display:inline-block;border:solid;border-block-color:darkred;margin:5px;border-radius:15px;padding:10px;">
     <h3>Protokoll</h3>
 
     <ul id="message-list">
