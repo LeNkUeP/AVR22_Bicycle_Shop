@@ -1,12 +1,13 @@
 ﻿@using Microsoft.AspNetCore.SignalR.Client;
-<div style="width:500px;height:300px;">Screenshot Target
+<div style="width:500px;height:300px;visibility:hidden;">
+    Screenshot Target
     <canvas width="500" height="300" id="myCanvas"></canvas>
 </div>
 
-@code {
-
+@code
+{
     [Parameter]
-    public Func<ScreenshotSource> SourceFunc{ get; set; }
+    public Func<ScreenshotSource> SourceFunc { get; set; }
 
 
     [Inject]
@@ -21,7 +22,7 @@
         await JSRuntime.InvokeVoidAsync("put2Canvas", id.ID, "myCanvas");
         var base64 = await JSRuntime.InvokeAsync<string>("JsFunctions.GetCanvasDataUrl", "myCanvas");
 
-            HubConn.Connection.InvokeAsync("CompanionAppScreenshot", base64.Substring("data:image/png;base64,".Length));
+        HubConn.Connection.InvokeAsync("CompanionAppScreenshot", base64.Substring("data:image/png;base64,".Length));
     }
 
 }

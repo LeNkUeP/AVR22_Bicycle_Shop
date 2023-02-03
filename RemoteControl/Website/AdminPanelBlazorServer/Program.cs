@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using SharedLib;
 using System.IdentityModel.Tokens.Jwt;
@@ -98,8 +99,11 @@ builder.Services.AddSingleton(new HubConnector());
 
 var app = builder.Build();
 
-
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "posted")),
+});
 
 app.UseRouting();
 

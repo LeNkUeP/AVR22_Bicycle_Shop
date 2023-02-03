@@ -14,7 +14,7 @@ public class LoggerStub<T>
 
     private void LogString(string entry)
     {
-        LogMessages.Add(entry);
+        LogMessages?.Add(entry);
         Debug.WriteLine(entry);
     }
     public List<string> LogMessages { get; set; }
